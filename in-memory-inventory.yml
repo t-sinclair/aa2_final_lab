@@ -6,7 +6,7 @@
   vars:
     guid: "{{ lookup('ENV','GUID') }}"
     home: "{{ lookup('ENV','HOME') }}"
-    internal_domain: "example.com"
+    internal_domain: "internal" #"example.com"
   tasks:
     - name: Collection instance info
       os_server_info:
@@ -30,13 +30,3 @@
   gather_facts: false
   tasks:
     - debug: var=groups
-
-- name: Verify OpenStack Instances
-  hosts: osp_instances
-  tasks:
-    - name: Verify connectivity
-      ping:
-      register: output
-
-    - debug:
-        msg: "{{ output }}"
